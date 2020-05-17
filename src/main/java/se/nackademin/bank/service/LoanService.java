@@ -41,5 +41,15 @@ public class LoanService {
         return loanRepository.findById(id);
     }
 
+    public Loan getLoanById(Long id) {
+        return loanRepository.getLoanById(id);
+    }
+
+    public void saveLoan(Loan loan) {
+        loanRepository.save(loan);
+    }
+
+
+
 
 }

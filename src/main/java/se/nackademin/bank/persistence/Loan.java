@@ -38,6 +38,10 @@ public class Loan {
         return approved;
     }
 
+    public void setApproved(boolean approved) {
+        this.approved = approved;
+    }
+
     @Override
     public String toString() {
         return "Loan{" +

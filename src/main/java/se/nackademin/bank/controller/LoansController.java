@@ -47,4 +47,18 @@ public class LoansController {
 
         return accountsMap;
     }
+
+    @RequestMapping("/loans/setApproved/{loanId}/{approved}")
+    public void setApproved (@PathVariable Long loanId, @PathVariable Boolean approved) {
+
+
+        Loan loan = loanService.getLoanById(loanId);
+
+
+        if (loan != null) {
+            loan.setApproved(approved);
+            loanService.saveLoan(loan);
+            }
+
+    }
 }
