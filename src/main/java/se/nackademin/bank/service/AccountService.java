@@ -35,4 +35,12 @@ public class AccountService {
     public Optional<Account> getAccount(Long id) {
         return accountRepository.findById(id);
     }
+
+    public void saveAccount(Account account) {
+        accountRepository.save(account);
+    }
+
+    public Account getAccountById(Long id){
+        return accountRepository.getAccountById(id);
+    }
 }

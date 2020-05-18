@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import se.nackademin.bank.persistence.Account;
+import se.nackademin.bank.persistence.Loan;
 import se.nackademin.bank.persistence.User;
 import se.nackademin.bank.service.AccountService;
 import se.nackademin.bank.service.UserService;
@@ -40,9 +41,26 @@ public class AccountsController {
             Map<String,String> map = new HashMap<>();
             map.put("accountId", a.getId().toString());
             map.put("accountBalance", Double.toString(a.getBalance()));
+            map.put("interestRate", Double.toString(a.getInterestRate()));
             accountsMap.add(map);
         }
 
         return accountsMap;
+    }
+
+    @RequestMapping("/accounts/setInterestRate/{accountId}/{interestRate}")
+    public boolean setApproved (@PathVariable Long accountId, @PathVariable Double interestRate) {
+
+
+        Account account = accountService.getAccountById(accountId);
+
+
+        if (account != null) {
+            account.setInterestRate(interestRate);
+            accountService.saveAccount(account);
+            return true;
+        }
+
+        return false;
     }
 }

@@ -22,6 +22,12 @@ public class Loan {
         this.approved = approved;
     }
 
+    public Loan(User user, double amount) {
+        this.user = user;
+        this.amount = amount;
+        this.approved = false;
+    }
+
     public Long getId() {
         return id;
     }

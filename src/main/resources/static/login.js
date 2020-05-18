@@ -18,6 +18,7 @@ $(document).ready(function(){
                 $("#errormessage").text("Incorrect username or password");
             } else {
                 setActiveUser(username,password);
+                setLoggedIn();
                 location.href = "userpage.html";
             }
         });
@@ -35,4 +36,8 @@ function setActiveUser(username, password) {
     $.ajax({
         url: url
     });
+}
+
+function setLoggedIn() {
+    sessionStorage.setItem("userLoggedIn", "yes");
 }

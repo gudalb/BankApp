@@ -49,7 +49,7 @@ public class LoansController {
     }
 
     @RequestMapping("/loans/setApproved/{loanId}/{approved}")
-    public void setApproved (@PathVariable Long loanId, @PathVariable Boolean approved) {
+    public boolean setApproved (@PathVariable Long loanId, @PathVariable Boolean approved) {
 
 
         Loan loan = loanService.getLoanById(loanId);
@@ -58,7 +58,23 @@ public class LoansController {
         if (loan != null) {
             loan.setApproved(approved);
             loanService.saveLoan(loan);
+            return true;
             }
 
+        return false;
+
+    }
+
+    @RequestMapping("/loans/apply/{userId}/{amount}")
+    public boolean applyForLoan(@PathVariable Long userId, @PathVariable Double amount) {
+        User user = userService.getUserById(userId);
+
+        if (user != null) {
+            Loan loan = new Loan(user,amount);
+            loanService.saveLoan(loan);
+            return true;
+        }
+
+        return false;
     }
 }

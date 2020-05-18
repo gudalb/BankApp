@@ -31,9 +31,9 @@ public class BankApplication {
             User user1 = userRepository.getUserById((long) 1);
             User user2 = userRepository.getUserById((long) 2);
 
-            accountRepository.save(new Account(user1, 30000));
-            accountRepository.save(new Account(user2, 15000));
-            accountRepository.save(new Account(user1, 30000));
+            accountRepository.save(new Account(user1, 30000, 3));
+            accountRepository.save(new Account(user2, 15000, 4));
+            accountRepository.save(new Account(user1, 30000, 5));
 
             loanRepository.save(new Loan(user1, 30000.5, true ));
             loanRepository.save(new Loan(user1, 15000, false ));
