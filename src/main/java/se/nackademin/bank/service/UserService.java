@@ -18,7 +18,7 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public List<User> getUserByUsernameAndPassword(String username, String password) {
+    public Optional<User> getUserByUsernameAndPassword(String username, String password) {
         return userRepository.findUserByUsernameAndPassword(username, password);
     }
 
@@ -41,4 +41,6 @@ public class UserService {
     public User getUserById(Long id) {
         return userRepository.getUserById(id);
     }
+
+    public Optional<User> findById(Long id){ return userRepository.findById(id);}
 }

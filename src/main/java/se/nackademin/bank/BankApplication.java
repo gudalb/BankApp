@@ -38,18 +38,18 @@ public class BankApplication {
             loanRepository.save(new Loan(user1, 30000.5, true ));
             loanRepository.save(new Loan(user1, 15000, false ));
 
-            List<User> result = userService.getAllUsers();
+/*            List<User> result = userService.getAllUsers();
             log2.info("" + result);
-            result = userService.getUserByUsernameAndPassword("abbe", "123");
+            result = userService.findById(1);
             log2.info("rätt pass " + result);
-            result = userService.getUserByUsernameAndPassword("abbe", "321");
+            result = userService.findById((long) 1);
             log2.info("fel pass " + result);
             List<Account> result2 = accountService.getAccountByUser(user1);
             log2.info("accounts by user " + result2);
             boolean result3 = userService.existsUserByUsername("abbe");
             log2.info("user exists with username true " + result3);
             result3 = userService.existsUserByUsername("abwadawdbe");
-            log2.info("user exists with username false " + result3);
+            log2.info("user exists with username false " + result3);*/
 
         };
 

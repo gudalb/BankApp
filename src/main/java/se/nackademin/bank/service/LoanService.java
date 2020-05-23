@@ -2,11 +2,9 @@ package se.nackademin.bank.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import se.nackademin.bank.persistence.Account;
 import se.nackademin.bank.persistence.Loan;
 import se.nackademin.bank.persistence.LoanRepository;
 import se.nackademin.bank.persistence.User;
-
 
 import java.util.List;
 import java.util.Optional;

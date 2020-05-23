@@ -4,12 +4,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.context.annotation.SessionScope;
 import se.nackademin.bank.persistence.User;
 import se.nackademin.bank.service.UserService;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 public class ActiveUserController {
@@ -23,7 +23,7 @@ public class ActiveUserController {
 
     @RequestMapping("/setactiveuser/{username}/{password}")
     public void setActiveUser(@PathVariable String username, @PathVariable  String password) {
-        this.activeUser = userService.getUserByUsernameAndPassword(username, password).get(0);
+        activeUser =  userService.getUserByUsernameAndPassword(username, password).get();
     }
 
     @RequestMapping("/getactiveuser")

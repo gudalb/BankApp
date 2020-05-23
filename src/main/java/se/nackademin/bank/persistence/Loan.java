@@ -52,7 +52,7 @@ public class Loan {
     public String toString() {
         return "Loan{" +
                 "id=" + id +
-                ", user=" + user +
+                ", userId=" + user.getId() +
                 ", amount=" + amount +
                 ", approved=" + approved +
                 '}';

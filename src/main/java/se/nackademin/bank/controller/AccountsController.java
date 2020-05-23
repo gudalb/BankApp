@@ -5,15 +5,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import se.nackademin.bank.persistence.Account;
-import se.nackademin.bank.persistence.Loan;
 import se.nackademin.bank.persistence.User;
 import se.nackademin.bank.service.AccountService;
 import se.nackademin.bank.service.UserService;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 public class AccountsController {
@@ -27,25 +23,26 @@ public class AccountsController {
         this.accountService = accountService;
     }
 
-    @RequestMapping("/accounts/{username}/{password}")
-    public List<Map<String,String>> getUserAccounts(@PathVariable String username, @PathVariable  String password) {
+    @RequestMapping("/accounts/{userId}")
+    public List<Account> getUserAccounts(@PathVariable Long userId) {
 
-        List<User> userMatch = userService.getUserByUsernameAndPassword(username,password);
-        User user = userMatch.get(0);
-        List<Account> accounts = accountService.getAccountByUser(user);
+        Optional<User> user = userService.findById(userId);
 
-        List<Map<String,String>> accountsMap = new ArrayList<>();
+        if (user.isPresent())
+            return accountService.getAccountByUser(user.get());
 
-        for (Account a: accounts
-             ) {
-            Map<String,String> map = new HashMap<>();
-            map.put("accountId", a.getId().toString());
-            map.put("accountBalance", Double.toString(a.getBalance()));
-            map.put("interestRate", Double.toString(a.getInterestRate()));
-            accountsMap.add(map);
-        }
+        return null;
+    }
 
-        return accountsMap;
+    @RequestMapping("/account/{accountId}")
+    public Account getAccount(@PathVariable Long accountId) {
+
+        Optional<Account> account = accountService.getAccount(accountId);
+
+        if (account.isPresent())
+            return account.get();
+
+        return null;
     }
 
     @RequestMapping("/accounts/setInterestRate/{accountId}/{interestRate}")
@@ -58,6 +55,25 @@ public class AccountsController {
         if (account != null) {
             account.setInterestRate(interestRate);
             accountService.saveAccount(account);
+            return true;
+        }
+
+        return false;
+    }
+
+
+    @RequestMapping("/accounts/transferfunds/{fromAccountId}/{toAccountId}/{amount}")
+    public boolean transferFunds (@PathVariable Long fromAccountId, @PathVariable Long toAccountId, @PathVariable Double amount) {
+
+        Optional<Account> fromAccount = accountService.getAccount(fromAccountId);
+        Optional<Account> toAccount = accountService.getAccount(toAccountId);
+
+
+        if (fromAccount.isPresent() && toAccount.isPresent() && fromAccount.get().getBalance() >= amount) {
+            fromAccount.get().setBalance(fromAccount.get().getBalance() - amount);
+            toAccount.get().setBalance(toAccount.get().getBalance() + amount);
+            accountService.saveAccount(fromAccount.get());
+            accountService.saveAccount(toAccount.get());
             return true;
         }
 

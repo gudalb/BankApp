@@ -18,7 +18,6 @@ $(document).ready(function(){
                 $("#errormessage").text("Incorrect username or password");
             } else {
                 setActiveUser(username,password);
-                setLoggedIn();
                 location.href = "userpage.html";
             }
         });
@@ -38,6 +37,11 @@ function setActiveUser(username, password) {
     });
 }
 
-function setLoggedIn() {
-    sessionStorage.setItem("userLoggedIn", "yes");
+
+function logOut() {
+    $.ajax({
+        url: "http://localhost:8080/resetactiveuser"
+    });
+
+    location.href = "index.html";
 }

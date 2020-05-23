@@ -1,7 +1,9 @@
 package se.nackademin.bank.persistence;
 
-import javax.persistence.*;
-import java.util.Optional;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Account {
@@ -51,7 +53,7 @@ public class Account {
     public String toString() {
         return "Account{" +
                 "id=" + id +
-                ", user=" + user +
+                ", userId=" + user.getId() +
                 ", balance=" + balance +
                 ", interestRate=" + interestRate +
                 '}';

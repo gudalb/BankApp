@@ -10,10 +10,7 @@ import se.nackademin.bank.persistence.User;
 import se.nackademin.bank.service.LoanService;
 import se.nackademin.bank.service.UserService;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 public class LoansController {
@@ -27,25 +24,17 @@ public class LoansController {
         this.userService = userService;
     }
 
-    @RequestMapping("/loans/{username}/{password}")
-    public List<Map<String,String>> getUserAccounts(@PathVariable String username, @PathVariable  String password) {
+    @RequestMapping("/loans/{userId}")
+    public List<Loan> getUserLoans(@PathVariable Long userId) {
 
-        List<User> userMatch = userService.getUserByUsernameAndPassword(username,password);
-        User user = userMatch.get(0);
-        List<Loan> loans = loanService.getLoanByUser(user);
 
-        List<Map<String,String>> accountsMap = new ArrayList<>();
+        Optional<User> user = userService.findById(userId);
 
-        for (Loan a: loans
-        ) {
-            Map<String,String> map = new HashMap<>();
-            map.put("loanId", a.getId().toString());
-            map.put("loanAmount", Double.toString(a.getAmount()));
-            map.put("isApproved", Boolean.toString(a.isApproved()));
-            accountsMap.add(map);
-        }
+        //fixa funktion som returnernan optional för detta
 
-        return accountsMap;
+        if(user.isPresent())
+            return loanService.getLoanByUser(user.get());
+        return null;
     }
 
     @RequestMapping("/loans/setApproved/{loanId}/{approved}")
