@@ -9,6 +9,8 @@
             crossorigin="anonymous"></script>
     <script src="userpage.js"></script>
     <script src="login.js"></script>
+    <script>window.onload = loggedInCheck();</script>
+    <script>window.onload = adminRedirect();</script>
     <script>window.onload = pageLoad();</script>
 </head>
 <body>
@@ -25,6 +27,7 @@
         <th>Interest rate</th>
     </tr>
 </table> <br/>
+<p><button type="submit" name="submit" onclick="addAccount()">Add account</button></p>
 <a href="transferfunds.html">Transfer funds</a>
 
 <br/>

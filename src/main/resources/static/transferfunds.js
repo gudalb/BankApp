@@ -2,20 +2,11 @@ $(document).ready(function(){
     $("#transferFunds").click(function(){
 
 
-        var activeUser = {};
+        var activeUser = getLoggedInUser();
         var fromAccount = {};
         var toAccount = {};
 
-        $.ajax({
-            url: "http://localhost:8080/getactiveuser",
-            async: false,
-            dataType: 'json',
-            success: function(user) {
-                activeUser = user;
-            }
-        });
 
-        console.log(activeUser);
 
 
         fromAccountId = $("#fromaccount").val();
@@ -40,6 +31,13 @@ $(document).ready(function(){
                 console.log("to: " + toAccount.id);
             }
         });
+
+        console.log("fromaccount user id" + fromAccount.id);
+
+        if(fromAccount.id == null) {
+            alert("Account to transfer from does not exist.");
+            return false;
+        }
 
         if(fromAccount.user.id != activeUser.userId) {
             alert("You can only transfer from your accounts.");

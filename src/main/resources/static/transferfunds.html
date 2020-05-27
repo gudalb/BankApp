@@ -8,6 +8,8 @@
             integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
             crossorigin="anonymous"></script>
     <script src="transferfunds.js"></script>
+    <script src="login.js"></script>
+    <script>window.onload = loggedInCheck();</script>
 </head>
 <body>
 
@@ -15,9 +17,9 @@
 <h1>Transfer funds</h1>
 
 <form>
-    <p>From account: <input type="number" value="fromaccount" id="fromaccount"></p>
-    <p>To account: <input type="number" value="toaccount" id="toaccount"></p>
-    <p>Amount: <input type="number" value="amount" id="amount"></p>
+    <p>From account: <input type="number" id="fromaccount"></p>
+    <p>To account: <input type="number" id="toaccount"></p>
+    <p>Amount: <input type="number" id="amount"></p>
     <p><button type="submit" name="submit" id="transferFunds">submit</button></p>
 </form>
 

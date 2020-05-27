@@ -28,15 +28,20 @@ public class BankApplication {
         return args -> {
             userRepository.save(new User("abbe", "123", true));
             userRepository.save(new User("alf", "123", false));
+            userRepository.save(new User("kalle", "123", false));
             User user1 = userRepository.getUserById((long) 1);
             User user2 = userRepository.getUserById((long) 2);
+            User user3 = userRepository.getUserById((long) 3);
 
-            accountRepository.save(new Account(user1, 30000, 3));
+            accountRepository.save(new Account(user3, 30000, 3));
             accountRepository.save(new Account(user2, 15000, 4));
-            accountRepository.save(new Account(user1, 30000, 5));
+            accountRepository.save(new Account(user3, 30000, 5));
 
-            loanRepository.save(new Loan(user1, 30000.5, true ));
-            loanRepository.save(new Loan(user1, 15000, false ));
+            loanRepository.save(new Loan(user3, 30000.5, true ));
+            loanRepository.save(new Loan(user2, 15000, false ));
+            loanRepository.save(new Loan(user3, 15000, false ));
+            loanRepository.save(new Loan(user2, 15000, false ));
+
 
 /*            List<User> result = userService.getAllUsers();
             log2.info("" + result);

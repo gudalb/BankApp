@@ -1,19 +1,11 @@
 function pageLoad(){
     $(document).ready(function(){
 
-        var activeUser = {};
+
+
+        var activeUser = getLoggedInUser();
         var userLoans = {};
         var userAccounts = {};
-
-        $.ajax({
-            url: "http://localhost:8080/getactiveuser",
-            async: false,
-            dataType: 'json',
-            success: function(user) {
-                activeUser = user;
-            }
-        });
-
 
         $.ajax({
             url: "http://localhost:8080/accounts/" + activeUser.userId,
@@ -32,6 +24,7 @@ function pageLoad(){
                 userLoans = loans;
             }
         });
+
 
 
         console.log(activeUser);
@@ -53,4 +46,16 @@ function pageLoad(){
         });
 
     });
+}
+
+function addAccount() {
+    var activeUser = getLoggedInUser();
+
+    $.ajax({
+        url: "http://localhost:8080/addaccount/" + activeUser.userId,
+        async: false,
+        dataType: 'json'
+    });
+
+    location.href = "userpage.html";
 }

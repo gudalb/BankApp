@@ -2,16 +2,11 @@ $(document).ready(function(){
     $("#submitLoanForm").click(function(){
 
 
-        var activeUser = {};
+        var activeUser = getLoggedInUser();
 
-        $.ajax({
-            url: "http://localhost:8080/getactiveuser",
-            async: false,
-            dataType: 'json',
-            success: function(user) {
-                activeUser = user;
-            }
-        });
+        if(activeUser.userId == null) {
+            location.href = "notloggedin.html";
+        }
 
         var amount = $("#loanAmount").val();
 

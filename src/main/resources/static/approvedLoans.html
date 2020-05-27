@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Approved loans</title>
+    <script
+            src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+            crossorigin="anonymous"></script>
+    <script src="approvedLoans.js"></script>
+    <script src="login.js"></script>
+    <script>window.onload = loggedInCheck();</script>
+    <script>window.onload = adminCheck();</script>
+    <script>window.onload = pageLoad();</script>
+</head>
+<body>
+<a href="adminpage.html">Back to adminpage</a>
+<h1>List of approved loans.</h1>
+
+<table id="loanstable" border="1" cellpadding="1">
+    <tr>
+        <th>User ID</th>
+        <th>Loan ID</th>
+        <th>Amount</th>
+        <th>Approved</th>
+    </tr>
+</table> <br/>
+
+</body>
+</html>

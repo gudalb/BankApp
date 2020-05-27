@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>List users</title>
+    <script
+            src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+            crossorigin="anonymous"></script>
+    <script src="userlist.js"></script>
+    <script src="login.js"></script>
+    <script>window.onload = loggedInCheck();</script>
+    <script>window.onload = adminCheck();</script>
+    <script>window.onload = pageLoad();</script>
+</head>
+<body>
+<a href="adminpage.html">Back to adminpage</a>
+<h1>List users.</h1>
+<table id="userstable" border="1" cellpadding="1">
+    <tr>
+        <th>User id</th>
+        <th>Username</th>
+        <th>Is admin</th>
+    </tr>
+</table>
+
+</body>
+</html>

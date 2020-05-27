@@ -30,12 +30,40 @@ public class LoansController {
 
         Optional<User> user = userService.findById(userId);
 
-        //fixa funktion som returnernan optional för detta
-
         if(user.isPresent())
             return loanService.getLoanByUser(user.get());
         return null;
     }
+
+
+    @RequestMapping("/approvedloans")
+    public List<Loan> getApprovedLoans() {
+
+
+        List<Loan> loans = loanService.getAllLoans();
+        List<Loan> approvedLoans = new ArrayList<>();
+        for(Loan loan : loans) {
+            if (loan.isApproved())
+                approvedLoans.add(loan);
+        }
+
+        return  approvedLoans;
+    }
+
+    @RequestMapping("/unapprovedloans")
+    public List<Loan> getUnapprovedLoans() {
+
+
+        List<Loan> loans = loanService.getAllLoans();
+        List<Loan> unapprovedLoans = new ArrayList<>();
+        for(Loan loan : loans) {
+            if (!loan.isApproved())
+                unapprovedLoans.add(loan);
+        }
+
+        return  unapprovedLoans;
+    }
+
 
     @RequestMapping("/loans/setApproved/{loanId}/{approved}")
     public boolean setApproved (@PathVariable Long loanId, @PathVariable Boolean approved) {

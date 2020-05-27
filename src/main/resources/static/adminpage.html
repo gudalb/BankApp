@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+    <script
+            src="https://code.jquery.com/jquery-3.5.1.js"
+            integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+            crossorigin="anonymous"></script>
+    <script src="adminpage.js"></script>
+    <script src="login.js"></script>
+    <script>window.onload = loggedInCheck();</script>
+    <script>window.onload = adminCheck();</script>
+    <script>window.onload = pageLoad();</script>
+
+</head>
+<body>
+<p><button type="submit" name="submit" onclick="logOut()">log out</button></p>
+<h1>Admin page</h1>
+
+<p>Unapproved loans</p>
+<table id="unapprovedTable" border="1" cellpadding="1">
+    <tr>
+        <th>User ID</th>
+        <th>Loan ID</th>
+        <th>Amount</th>
+        <th>Approved</th>
+    </tr>
+</table> <br/><br/>
+
+<p>MENU</p>
+<a href="editinterestrate.html">Edit customer accounts - interest rate</a><br/>
+<a href="approvedLoans.html">View approved loans</a><br/>
+<a href="userlist.html">View all users</a>
+
+
+
+
+</body>
+</html>

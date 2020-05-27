@@ -23,6 +23,11 @@ public class AccountsController {
         this.accountService = accountService;
     }
 
+    @RequestMapping("/accounts/all")
+    public List<Account> getAllAccounts () {
+        return accountService.getAllAccounts();
+    }
+
     @RequestMapping("/accounts/{userId}")
     public List<Account> getUserAccounts(@PathVariable Long userId) {
 
@@ -32,6 +37,14 @@ public class AccountsController {
             return accountService.getAccountByUser(user.get());
 
         return null;
+    }
+
+    @RequestMapping("/addaccount/{userId}")
+    public void addUserAccount(@PathVariable Long userId) {
+        Optional<User> user = userService.findById(userId);
+
+        if(user.isPresent())
+            accountService.saveAccount(new Account(user.get(), 15000, 5));
     }
 
     @RequestMapping("/account/{accountId}")
