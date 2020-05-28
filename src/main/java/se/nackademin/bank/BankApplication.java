@@ -27,6 +27,7 @@ public class BankApplication {
 
         return args -> {
             userRepository.save(new User("abbe", "123", true));
+            userRepository.save(new User("admin", "123", true));
             userRepository.save(new User("alf", "123", false));
             userRepository.save(new User("kalle", "123", false));
             User user1 = userRepository.getUserById((long) 1);
